@@ -1,0 +1,71 @@
+.equipo-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .equipo-header{
+    background-image: url('https://basquetgirona.com/wp-content/uploads/2020/06/granccorporatiu.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+  }
+  
+  
+  
+  .equipo-imagen {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .equipo-nombre {
+    color: #333;
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  
+  .equipo-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .equipo-seccion {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .equipo-seccion-titulo {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .equipo-seccion-descripcion {
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .equipo-tabla {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .equipo-tabla th,
+  .equipo-tabla td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .equipo-tabla th {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
