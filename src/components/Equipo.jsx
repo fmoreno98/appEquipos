@@ -1,8 +1,12 @@
 import React from 'react';
 import './Equipo.css'; // Importa el archivo CSS
 import PartidoMin from './PartidoMin';
+import { useParams } from 'react-router-dom';
 
 function Equipo() {
+
+  let { id } = useParams();
+
   return (
     <div className="equipo-container">
       <header className="equipo-header">
@@ -17,40 +21,15 @@ function Equipo() {
           <p className="equipo-seccion-descripcion">Descripción del equipo, historia, logros, etc.</p>
         </section>
         <div className='partidos'>
-        <PartidoMin />
-        <PartidoMin />
+          <h1>ULTIMOS PARTIDOS</h1>
+          <PartidoMin />
+          <PartidoMin />
         </div>
 
-        
 
-        <section className="equipo-seccion">
-          <h2 className="equipo-seccion-titulo">Partidos Jugados</h2>
-          <table className="equipo-tabla">
-            <thead>
-              <tr>
-                <th>Equipo Local</th>
-                <th>Equipo Visitante</th>
-                <th>Resultado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Equipo Local 1</td>
-                <td>Equipo Visitante 1</td>
-                <td>Resultado 1</td>
-              </tr>
-              <tr>
-                <td>Equipo Local 2</td>
-                <td>Equipo Visitante 2</td>
-                <td>Resultado 2</td>
-              </tr>
-              {/* Agrega más filas de partidos aquí */}
-            </tbody>
-          </table>
-        </section>
 
+        <h1>Jugadores</h1>
         <section className="equipo-seccion">
-          <h2 className="equipo-seccion-titulo">Jugadores</h2>
           <table className="equipo-tabla">
             <thead>
               <tr>

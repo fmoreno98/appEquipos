@@ -4,3 +4,51 @@
   align-items: center;
   text-align: center;
 }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.contenido {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+
+/* Encabezado */
+
+
+/* Encabezado */
+.portada {
+  background-color: #ffff;
+  box-shadow: 0 1px 5px #FF914D;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  position: sticky;
+  position: top;
+}
+
+/* Contenido principal */
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+/* Footer */
+footer {
+  background-color: #FF914D;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
