@@ -1,0 +1,29 @@
+.foto{
+
+}
+
+.nombre{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 30px;
+
+}
+
+.equipo{
+
+}
+
+.cabecera{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+
+}
