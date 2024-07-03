@@ -5,15 +5,28 @@ import './App.css'
 import CardEquipo from './components/CardEquipo'
 import CardJugador from './components/CardJugador'
 import JugadorEspecifico from './components/JugadorEspecifico'
+import Equipo from './components/Equipo'
+import PartidoMin from './components/PartidoMin'
+import { Outlet } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className='container'> 
-      <JugadorEspecifico />
+
         
+    <div className="caja">
+      <header className="portada">
+        <img src="/img/YOUR.png" alt="Logo de la App"/>
+      </header>
+      <JugadorEspecifico />
+
+      <Outlet />
+<footer>
+        <p>&copy; 2023 YourTrainer. Todos los derechos reservados.</p>
+      </footer>
+
     </div>
+        
   )
 }
 
