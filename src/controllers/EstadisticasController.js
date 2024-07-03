@@ -8,7 +8,7 @@ class EstadisticaController{
         this.token = TOKEN;
     }
 
-    async getAllEquipos() {
+    async getAllEstadisticas() {
         const response = await fetch(`${this.apiUrl}`, {
             method: 'GET',
             headers: {
@@ -21,7 +21,7 @@ class EstadisticaController{
         return data.list;
     }
 
-    async getEquipoById(id) {
+    async getEstadisticaById(id) {
         const response = await fetch(`${this.apiUrl}/${id}`, {
             method: 'GET',
             headers: {
@@ -34,7 +34,7 @@ class EstadisticaController{
         return data;
     }
 
-    async createEquipo(puntos, t1_a, t1, t2_a, t2, t3_a, t3, minutos, faltas) {
+    async createEstadistica(puntos, t1_a, t1, t2_a, t2, t3_a, t3, minutos, faltas) {
         const response = await fetch(`${this.apiUrl}`, {
             method: 'POST',
             headers: {
@@ -58,7 +58,7 @@ class EstadisticaController{
         return data;
     }
 
-    async updateEquipo(puntos, t1_a, t1, t2_a, t2, t3_a, t3, minutos, faltas) {
+    async updateEstadistica(puntos, t1_a, t1, t2_a, t2, t3_a, t3, minutos, faltas) {
         const response = await fetch(`${this.apiUrl}/${id}`, {
             method: 'PUT',
             headers: {
@@ -82,7 +82,7 @@ class EstadisticaController{
         return data;
     }
 
-    async deleteEquipo(id) {
+    async deleteEstadistica(id) {
         const response = await fetch(`${this.apiUrl}`, {
             method: 'DELETE',
             headers: {

@@ -1,11 +1,68 @@
+import EstadisticasController from "../controllers/EstadisticasController";
 import './JugadorEspecifico.css';
+import { useState, useEffect } from "react";
+import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
+
+import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
+import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
+
+
 
 
 
 function JugadorEspecifico(){
 
+    // const [estadisticas, setEstadisticas] = useState([]);
+
+    // useEffect(() => {
+
+    //     async function getAllEstadisticas() {
+    //         const estadisticasController = new EstadisticasController();
+    //         const stats = await estadisticasController.getAllEstadisticas();
+    //         if (stats.length) {
+    //             setEstadisticas(stats);
+    //             // console.log("entra")
+    //         } else {
+    //             console.log(stats)
+    //         }
+    //     }
+
+    //     getAllEstadisticas();
+
+    // }, [])
+
+    
+    // if (estadisticas.length == 0) {
+    //     return (
+    //         <>
+    //             <h1>No hay estadisticas</h1>
+    //         </>
+    //     )
+    // }
 
 
+
+
+
+    // const GridExample = () => {
+        // Row Data: The data to be displayed.
+        let [rowData, setRowData] = useState([
+          { make: "Tesla", model: "Model Y", price: 64950, electric: true },
+          { make: "Ford", model: "F-Series", price: 33850, electric: false },
+          { make: "Toyota", model: "Corolla", price: 29600, electric: false },
+        ]);
+        
+        // Column Definitions: Defines the columns to be displayed.
+        let [colDefs, setColDefs] = useState([
+          { field: "make" },
+          { field: "model" },
+          { field: "price" },
+          { field: "electric" }
+        ]);
+       
+    //    }
+
+       
 
     return(
 
@@ -57,36 +114,62 @@ function JugadorEspecifico(){
             <div className="row nombre">
                 Partidos
             </div>
+            <div className="row">
+                <div className="col-1"></div>
+                <div className="col-10 tabla">
+                {/* <table id="myTable" className="display">
+                    <thead>
+                        <tr>
+                            <th>Rival</th>
+                            <th>Dia del Partido</th>
+                            <th>PTS</th>
+                            <th>MIN</th>
+                            <th>FALTAS</th>
+                            <th>T1</th>
+                            <th>T2</th>
+                            <th>T3</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {estadisticas.map((estadistica) => {
+                            return(
+                                <tr>
+                                    <td>{"contincante"}</td>
+                                    <td>{"fecha"}</td>
+                                    <td>{estadistica.puntos}</td>
+                                    <td>{estadistica.minutos}</td>
+                                    <td>{estadistica.faltas}</td>
+                                    <td>{estadistica.t1_a + "/" + estadistica.t1 }</td>
+                                    <td>{estadistica.t2_a + "/" + estadistica.t2 }</td>
+                                    <td>{estadistica.t3_a + "/" + estadistica.t3 }</td>
+                                    <td></td>
+                                </tr>
+                            )
 
-            <table id="myTable" class="display">
-            <thead>
-                <tr>
-                    <th>Rival</th>
-                    <th>Dia del Partido</th>
-                    <th>Dia del Partido</th>
-                    <th>PTS</th>
-                    <th>MIN</th>
-                    <th>FALTAS</th>
-                    <th>T1</th>
-                    <th>T2</th>
-                    <th>T3</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Row 1 Data 1</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                </tr>
-            </tbody>
-        </table>
+
+
+
+                        })}
+                    </tbody>
+                </table> */}
+
+                <div
+                    className="ag-theme-quartz" // applying the Data Grid theme
+                    style={{ height: 500 }} // the Data Grid will fill the size of the parent container
+                    >
+                    <AgGridReact
+                        rowData={rowData}
+                        columnDefs={colDefs}
+                    />
+                </div>
+
+                
+
+                </div>
+                <div className="col-1"></div>
+            </div>
+
 
 
         

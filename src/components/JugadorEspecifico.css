@@ -27,3 +27,8 @@
     font-weight: bold;
 
 }
+
+.tabla{
+    display: flex;
+    justify-content: center;
+}
