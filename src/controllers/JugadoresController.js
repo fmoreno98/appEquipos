@@ -20,6 +20,22 @@ class JugadorController{
         const data = await response.json();
         return data.list;
     }
+    async getJugadoresByEquipo(id_equipo) {
+        const response = await fetch(`${this.apiUrl}?where=(id_equipo,eq,${id_equipo})`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'xc-token': this.token
+            }
+        });
+    
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+    
+        const data = await response.json();
+        return data.list; // La lista ya debe estar filtrada por el backend
+    }
 
     async getJugadorById(id) {
         const response = await fetch(`${this.apiUrl}/${id}`, {
