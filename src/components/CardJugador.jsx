@@ -10,6 +10,10 @@ function CardJugador( props ) {
 
 const [count, setCount] = useState(0);
 const { id, jugador, dorsal, posicion  } = props;
+let [totalMin, setTotalMin] = useState(0);
+let [totalPts, setTotalPts] = useState(0);
+const [estadisticas, setEstadisticas] = useState([]);    
+
 
 
 useEffect(() => {
@@ -18,6 +22,26 @@ useEffect(() => {
     console.log(jugadoresCount);
     setCount(jugadoresCount);
   };
+
+  async function getAllEstadisticas() {
+    // const estadisticasController = new EstadisticasController();
+    const stats = await estadisticacontroller.getEstadisticasByJugador(id);
+    if (stats.length) {
+        setEstadisticas(stats);
+        let minutacos = 0
+        let puntacos = 0
+        const nuevoRowData = stats.map(stat => { minutacos = minutacos + stat.minutos
+                                                 puntacos = puntacos + stat.puntos
+                                                 });
+        setTotalMin(minutacos)
+        setTotalPts(puntacos)
+        setRowData(nuevoRowData);
+    } else {
+        console.log(stats)
+    }
+}
+
+getAllEstadisticas();
 
   fetchJugadores();
 }, []);
@@ -62,13 +86,13 @@ useEffect(() => {
             {count}  
           </div>
           <div className="col-1 info">
-            489
+            {totalMin}
           </div>
           <div className="col-1 info">
            22
           </div>
           <div className="col-1 info">
-            189
+            {totalPts}
           </div>
           <div className="col-1 info">
             8
