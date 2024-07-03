@@ -1,73 +1,67 @@
 import EstadisticasController from "../controllers/EstadisticasController";
 import './JugadorEspecifico.css';
+import "./ag-grid-theme-builder.css"
 import { useState, useEffect } from "react";
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
-
-
-
-
-
 function JugadorEspecifico(){
 
-    // const [estadisticas, setEstadisticas] = useState([]);
+    const [estadisticas, setEstadisticas] = useState([]);    
+    let [rowData, setRowData] = useState([]);
+    let [totalMin, setTotalMin] = useState(0);
+    let [totalPts, setTotalPts] = useState(0);
+    let [colDefs, setColDefs] = useState([ //defiene las columnas de la tabla
+        { field: "Contrincante" },
+        { field: "Fecha" },
+        { field: "PTS" },
+        { field: "MIN" },
+        { field: "Faltas" },
+        { field: "T1" },
+        { field: "T2" },
+        { field: "T3" }
+      ]);
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     async function getAllEstadisticas() {
-    //         const estadisticasController = new EstadisticasController();
-    //         const stats = await estadisticasController.getAllEstadisticas();
-    //         if (stats.length) {
-    //             setEstadisticas(stats);
-    //             // console.log("entra")
-    //         } else {
-    //             console.log(stats)
-    //         }
-    //     }
+        async function getAllEstadisticas() {
+            const estadisticasController = new EstadisticasController();
+            const stats = await estadisticasController.getAllEstadisticas();
+            if (stats.length) {
+                setEstadisticas(stats);
+                let minutacos = 0
+                let puntacos = 0
+                const nuevoRowData = stats.map(stat => { minutacos = minutacos + stat.minutos
+                                                         puntacos = puntacos + stat.puntos
+                                                         return {   Contrincante: stat.id_jugador, 
+                                                                    Fecha: "fecha", 
+                                                                    PTS: stat.puntos, 
+                                                                    MIN: stat.minutos, 
+                                                                    Faltas: stat.faltas, 
+                                                                    T1: stat.t1_a + "/" + stat.t1, 
+                                                                    T2: stat.t2_a + "/" + stat.t2, 
+                                                                    T3: stat.t3_a + "/" + stat.t3 }});
+                setTotalMin(minutacos)
+                setTotalPts(puntacos)
+                setRowData(nuevoRowData);
+            } else {
+                console.log(stats)
+            }
+        }
 
-    //     getAllEstadisticas();
+        getAllEstadisticas();
 
-    // }, [])
+    }, [])
 
     
-    // if (estadisticas.length == 0) {
-    //     return (
-    //         <>
-    //             <h1>No hay estadisticas</h1>
-    //         </>
-    //     )
-    // }
-
-
-
-
-
-    // const GridExample = () => {
-        // Row Data: The data to be displayed.
-        let [rowData, setRowData] = useState([
-          { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-          { make: "Ford", model: "F-Series", price: 33850, electric: false },
-          { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-        ]);
-        
-        // Column Definitions: Defines the columns to be displayed.
-        let [colDefs, setColDefs] = useState([
-          { field: "make" },
-          { field: "model" },
-          { field: "price" },
-          { field: "electric" }
-        ]);
-       
-    //    }
-
-       
+    if (estadisticas.length == 0) {
+        return (
+            <>
+                <h1>No hay estadisticas</h1>
+            </>
+        )
+    }
 
     return(
-
-
-
 
         <>
             <div className="row foto">
@@ -91,12 +85,11 @@ function JugadorEspecifico(){
             </div>
             <div className="row">
                 <div className="col-1"></div>
-                <div className="col-2 info">23</div>
                 <div className="col-2 info">489</div>
+                <div className="col-2 info">{totalMin}</div>
                 <div className="col-2 info">22</div>
                 <div className="col-2 info">8</div>
-                <div className="col-2 info">189</div>
-                <div className="col-1"></div>
+                <div className="col-2 info">{totalPts}</div>
             </div>
             <br />
             <div className="row nombre">
@@ -116,47 +109,10 @@ function JugadorEspecifico(){
             </div>
             <div className="row">
                 <div className="col-1"></div>
-                <div className="col-10 tabla">
-                {/* <table id="myTable" className="display">
-                    <thead>
-                        <tr>
-                            <th>Rival</th>
-                            <th>Dia del Partido</th>
-                            <th>PTS</th>
-                            <th>MIN</th>
-                            <th>FALTAS</th>
-                            <th>T1</th>
-                            <th>T2</th>
-                            <th>T3</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {estadisticas.map((estadistica) => {
-                            return(
-                                <tr>
-                                    <td>{"contincante"}</td>
-                                    <td>{"fecha"}</td>
-                                    <td>{estadistica.puntos}</td>
-                                    <td>{estadistica.minutos}</td>
-                                    <td>{estadistica.faltas}</td>
-                                    <td>{estadistica.t1_a + "/" + estadistica.t1 }</td>
-                                    <td>{estadistica.t2_a + "/" + estadistica.t2 }</td>
-                                    <td>{estadistica.t3_a + "/" + estadistica.t3 }</td>
-                                    <td></td>
-                                </tr>
-                            )
-
-
-
-
-                        })}
-                    </tbody>
-                </table> */}
-
+                <div className="col-10">
                 <div
-                    className="ag-theme-quartz" // applying the Data Grid theme
-                    style={{ height: 500 }} // the Data Grid will fill the size of the parent container
+                    className="" // applying the Data Grid theme
+                    style={{ height: "150px", width: "95%" }} // the Data Grid will fill the size of the parent container
                     >
                     <AgGridReact
                         rowData={rowData}

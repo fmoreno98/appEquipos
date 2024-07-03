@@ -18,10 +18,10 @@ function App() {
       <header className="portada">
         <img src="/img/YOUR.png" alt="Logo de la App"/>
       </header>
-      <JugadorEspecifico />
+        <JugadorEspecifico />
 
       <Outlet />
-<footer>
+      <footer>
         <p>&copy; 2023 YourTrainer. Todos los derechos reservados.</p>
       </footer>
 
