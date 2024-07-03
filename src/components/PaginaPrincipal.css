@@ -44,7 +44,7 @@ footer {
     border: solid rgb(255, 255, 255) 2px;
 
     /* Eliminar borde */
-    padding: 18px 31px;
+    padding: 18px 35px;
     /* Espaciado interno */
     font-size: 40px;
     /* Tamaño de fuente */
@@ -59,7 +59,7 @@ footer {
 }
 
 .btn-agregar:hover {
-    padding: 18px 31px;
+    padding: 18px 35px;
     /* Espaciado interno */
     border: solid rgb(255, 255, 255) 2px;
     background-color: #a6a6a6;

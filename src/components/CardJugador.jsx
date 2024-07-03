@@ -1,8 +1,26 @@
 import './CardJugador.css';
 import { Outlet, Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import EstadisticaController from '../controllers/EstadisticasController';
 
 
-function CardJugador() {
+function CardJugador( props ) {
+
+  let estadisticacontroller = new EstadisticaController();
+
+const [count, setCount] = useState(0);
+const { id, jugador, dorsal, posicion  } = props;
+
+
+useEffect(() => {
+  const fetchJugadores = async () => {
+    const jugadoresCount = await estadisticacontroller.getCountByJugador(id);
+    console.log(jugadoresCount);
+    setCount(jugadoresCount);
+  };
+
+  fetchJugadores();
+}, []);
   return (
 
     <>
@@ -35,13 +53,13 @@ function CardJugador() {
         </div>
         <div className="row bodyCard">
           <div className="col-1 info" style={{"fontSize": 20, "display": "flex", "justifyContent": "end"}}>
-            8
+            {dorsal}
           </div>
           <div className="col-5 info" style={{"fontSize": 20, "display": "flex", "justifyContent": "start"}}>
-            fran moreno
+            {jugador}
           </div>
           <div className="col-1 info ">
-            23  
+            {count}  
           </div>
           <div className="col-1 info">
             489

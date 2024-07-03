@@ -20,6 +20,39 @@ class EstadisticaController{
         const data = await response.json();
         return data.list;
     }
+    async getEstadisticasByJugador(id_jugador) {
+        const response = await fetch(`${this.apiUrl}?where=(id_jugador,eq,${id_jugador})`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'xc-token': this.token
+            }
+        });
+    
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+    
+        const data = await response.json();
+        return data.list; // La lista ya debe estar filtrada por el backend
+    }
+    async getCountByJugador(id_jugador) {
+        const response = await fetch(`${this.apiUrl}/count?where=(id_jugador,eq,${id_jugador})`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'xc-token': this.token
+            }
+        });
+    
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+    
+        const data = await response.json();
+        console.log("controoller data", data)
+        return data.count; // La lista ya debe estar filtrada por el backend
+    }
 
     async getEstadisticaById(id) {
         const response = await fetch(`${this.apiUrl}/${id}`, {
