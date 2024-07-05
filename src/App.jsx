@@ -18,10 +18,9 @@ function App() {
       <header className="portada">
         <img src="/img/YOUR.png" alt="Logo de la App"/>
       </header>
-        <CardJugador />
-        {/* <JugadorEspecifico /> */}
+    
 
-      {/* <Outlet /> */}
+       <Outlet /> 
       <footer>
         <p>&copy; 2023 YourTrainer. Todos los derechos reservados.</p>
       </footer>
