@@ -42,15 +42,16 @@ class EquipoController{
                 'xc-token': this.token
             },
             body: JSON.stringify({
-                nombre: nombre,
-                categoria: categoria,
-                logo
+                Nombre: nombre,
+                Categoria: categoria,
+                Logo: logo // Aquí se envía la cadena de texto codificada en base64
             })
         });
-
+    
         const data = await response.json();
         return data;
     }
+    
 
     async updateEquipo(id, nombre, categoria, logo) {
         const response = await fetch(`${this.apiUrl}/${id}`, {

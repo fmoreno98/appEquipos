@@ -44,7 +44,7 @@ footer {
     border: solid rgb(255, 255, 255) 2px;
 
     /* Eliminar borde */
-    padding: 18px 35px;
+    padding: 18px 30px;
     /* Espaciado interno */
     font-size: 40px;
     /* Tamaño de fuente */
@@ -56,10 +56,11 @@ footer {
     /* Cambiar el cursor al pasar sobre el botón */
     transition: background-color 0.3s ease;
     /* Transición suave al cambiar el color de fondo */
+    text-decoration: none;
 }
 
 .btn-agregar:hover {
-    padding: 18px 35px;
+    padding: 18px 30px;
     /* Espaciado interno */
     border: solid rgb(255, 255, 255) 2px;
     background-color: #a6a6a6;
@@ -67,4 +68,7 @@ footer {
     background-color: #ffb158;
     
     /* Cambiar el color de fondo al pasar el mouse */
+}
+.titulo{
+    width: 100%;
 }

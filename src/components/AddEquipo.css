@@ -1,0 +1,78 @@
+/* AddEquipo.css */
+
+.add-equipo {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.add-equipo h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.add-equipo form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-equipo label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #555;
+  font-family: 'Roboto', sans-serif;
+}
+
+.add-equipo input[type="text"],
+.add-equipo input[type="file"] {
+  padding: 5px 15px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  transition: border-color 0.3s ease;
+}
+
+.add-equipo input[type="text"]:focus,
+.add-equipo input[type="file"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.add-equipo button[type="submit"] {
+  background-color: #ffca8e;
+
+  /* Color de fondo azul */
+  color: #000000;
+  /* Color de texto blanco */
+  border: solid rgb(255, 255, 255) 2px;
+  color: #000000;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  /* Hacer el botón redondo */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Sombra */
+  cursor: pointer;
+  /* Cambiar el cursor al pasar sobre el botón */
+  transition: background-color 0.3s ease;
+}
+
+.add-equipo button[type="submit"]:hover {
+  border: solid rgb(255, 255, 255) 2px;
+  background-color: #a6a6a6;
+  color: rgb(255, 255, 255);
+  background-color: #ffb158;  }
+
+
