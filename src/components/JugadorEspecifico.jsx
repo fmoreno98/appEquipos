@@ -11,15 +11,20 @@ function JugadorEspecifico(){
     let [totalMin, setTotalMin] = useState(0);
     let [totalPts, setTotalPts] = useState(0);
     let [colDefs, setColDefs] = useState([ //defiene las columnas de la tabla
-        { field: "Contrincante" },
-        { field: "Fecha" },
-        { field: "PTS" },
-        { field: "MIN" },
-        { field: "Faltas" },
-        { field: "T1" },
-        { field: "T2" },
-        { field: "T3" }
+        { field: "Contrincante", resizable: false, cellStyle: {textAlign: 'left'}, width: 20 },
+        { field: "Fecha", resizable: false, cellStyle: {textAlign: 'left'}, width: 20 },
+        { field: "PTS", resizable: false, cellStyle: {textAlign: 'left'}, width: 20 },
+        { field: "MIN", resizable: false, cellStyle: {textAlign: 'left'}, width: 20 },
+        { field: "Faltas", resizable: false, cellStyle: {textAlign: 'left'}, width: 20 },
+        { field: "T1", resizable: false, cellStyle: {textAlign: 'left'}, width: 20 },
+        { field: "T2", resizable: false, cellStyle: {textAlign: 'left'}, width: 20 },
+        { field: "T3", resizable: false, cellStyle: {textAlign: 'left'}, width: 20 }
       ]);
+
+      const autoSizeStrategy = {
+            type: 'fitCellContents'
+      };
+      
 
     useEffect(() => {
 
@@ -76,20 +81,20 @@ function JugadorEspecifico(){
             <br />
             <div className="row">
                 <div className="col-1"></div>
-                <div className="col-2 cabecera">PJ</div>
+                <div className="col-2 cabecera primer">PJ</div>
                 <div className="col-2 cabecera">MIN</div>
                 <div className="col-2 cabecera">MIN/P</div>
                 <div className="col-2 cabecera">PTS</div>
-                <div className="col-2 cabecera">PTS/P</div>
+                <div className="col-2 cabecera ultimo">PTS/P</div>
                 <div className="col-1"></div>
             </div>
             <div className="row">
                 <div className="col-1"></div>
-                <div className="col-2 info">489</div>
+                <div className="col-2 info primerInf">489</div>
                 <div className="col-2 info">{totalMin}</div>
                 <div className="col-2 info">22</div>
                 <div className="col-2 info">8</div>
-                <div className="col-2 info">{totalPts}</div>
+                <div className="col-2 info ultimoInf">{totalPts}</div>
             </div>
             <br />
             <div className="row nombre">
@@ -109,16 +114,21 @@ function JugadorEspecifico(){
             </div>
             <div className="row">
                 <div className="col-1"></div>
-                <div className="col-10">
+                <div className="col-10" style={{"display": "flex", "justifyContent": "center"}}>
                 <div
                     className="" // applying the Data Grid theme
-                    style={{ height: "150px", width: "95%" }} // the Data Grid will fill the size of the parent container
+                    style={{ minHeight: "15px", width: "56.5%", marginBottom: "5px"}} // the Data Grid will fill the size of the parent container
                     >
                     <AgGridReact
                         rowData={rowData}
                         columnDefs={colDefs}
+                        autoSizeStrategy={autoSizeStrategy}
+                        pagination={true}
+                        domLayout='autoHeight'
+                        paginationPageSize={10}
                     />
                 </div>
+                <br />
 
                 
 
