@@ -58,22 +58,22 @@ getAllEstadisticas();
           <div className="col-1" style={{"fontSize": 25, "display": "flex", "justifyContent": "end"}}>
             #
           </div>
-          <div className="col-5 justify-content-start cabecera">
+          <div className="col-5 justify-content-start cabecera1">
             NOM
           </div>
-          <div className="col-1 cabecera">
+          <div className="col-1 cabecera1">
             PJ  
           </div>
-          <div className="col-1 cabecera">
+          <div className="col-1 cabecera1">
             MIN
           </div>
-          <div className="col-1 cabecera">
+          <div className="col-1 cabecera1">
            MIN/P
           </div>
-          <div className="col-1 cabecera">
+          <div className="col-1 cabecera1">
             PTS
           </div>
-          <div className="col-1 cabecera">
+          <div className="col-1 cabecera1">
             PTS/P
           </div>
           <div className="col-1">
@@ -81,25 +81,25 @@ getAllEstadisticas();
           </div>
         </div>
         <div className="row bodyCard">
-          <div className="col-1 info" style={{"fontSize": 20, "display": "flex", "justifyContent": "end"}}>
+          <div className="col-1 info1" style={{"fontSize": 20, "display": "flex", "justifyContent": "end"}}>
             {dorsal}
           </div>
-          <div className="col-5 info" style={{"fontSize": 20, "display": "flex", "justifyContent": "start"}}>
+          <div className="col-5 info1" style={{"fontSize": 20, "display": "flex", "justifyContent": "start"}}>
             {jugador}
           </div>
-          <div className="col-1 info ">
+          <div className="col-1 info1 ">
             {count}  
           </div>
-          <div className="col-1 info">
+          <div className="col-1 info1">
             {totalMin}
           </div>
-          <div className="col-1 info">
+          <div className="col-1 info1">
            {totalMin / count}
           </div>
-          <div className="col-1 info">
+          <div className="col-1 info1">
             {totalPts}
           </div>
-          <div className="col-1 info">
+          <div className="col-1 info1">
             {totalPts / count}
           </div>
           <div className="col-1 ojo">
