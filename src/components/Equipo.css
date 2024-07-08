@@ -7,11 +7,20 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   .equipo-header{
-    background-image: url('https://basquetgirona.com/wp-content/uploads/2020/06/granccorporatiu.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 300px;
+    position: relative;
+    height: 300px; /* Ajusta la altura según tus necesidades */
+    overflow: hidden;
+  }
+  .banner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   
