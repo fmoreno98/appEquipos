@@ -10,25 +10,52 @@
 
 }
 
-.equipo{
+/* .equipo{
 
-}
+} */
 
 .cabecera{
     display: flex;
     justify-content: center;
     font-weight: bold;
+    background-color: #FF914D;
+    box-shadow: 2px 0px 0 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
 
+}
+
+.primer{
+    border-top-left-radius: 8px;
+}
+
+.ultimo{
+    border-top-right-radius: 8px;
+}
+
+.primerInf{
+    border-bottom-left-radius: 8px;
+}
+
+.ultimoInf{
+    border-bottom-right-radius: 8px;
 }
 
 .info{
     display: flex;
     justify-content: center;
     font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
 
 }
 
 .tabla{
     display: flex;
     justify-content: center;
+}
+
+.headerCard{
+    border-top-left-radius: 8px;
 }

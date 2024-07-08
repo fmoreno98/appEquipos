@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css'
 import Equipo from './components/Equipo.jsx';
 import PaginaPrincipal from './components/PaginaPrincipal'
+import AddEquipo from './components/AddEquipo.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -15,7 +16,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route exact path="/" element={<App />}>
           <Route index element={<PaginaPrincipal />} />
           <Route path="/equipo/:id" element={<Equipo />} />
-        </Route>
+          <Route path="/addequipo" element={<AddEquipo />}/>
+
+          </Route>
+          
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
