@@ -5,7 +5,8 @@ function PaginaPrincipal() {
   const equipos = [
     { id: 1, nombre: "Equipo 1" },
     { id: 2, nombre: "Equipo 2" },
-    { id: 3, nombre: "Equipo 3" },
+
+
 
 
 
