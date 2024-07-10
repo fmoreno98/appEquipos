@@ -7,6 +7,7 @@ import EstadisticaController from '../controllers/EstadisticasController';
 import CardJugador from './CardJugador';
 import JugadorController from '../controllers/JugadoresController';
 import EquipoController from '../controllers/EquipoController';
+import PartidosController from '../controllers/PartidosController';
 
 
 
@@ -14,26 +15,37 @@ function Equipo() {
   let { id } = useParams();
   const jugadorcontroller = new JugadorController();
   const equipocontroller = new EquipoController();
+  const partidoscontroller = new PartidosController();
   
-  const [equipo, setEquipo] = useState(null);
-  const [logo , setLogo] = useState(null);
-
+  const [equipo, setEquipo] = useState("");
+  const [logo , setLogo] = useState("");
   const [jugadores, setJugadores] = useState([]);
   const [count, setCount] = useState(0);
+  const [partidos, setPartidos] = useState([]);
 
   useEffect(() => {
+
+    const getPartidos = async () => {
+      const partidosData = await partidoscontroller.getPartidosByEquipos(id);
+      let partidos = partidosData.reverse().slice(0, 3); // Invierte el orden y toma los últimos 3 elementos
+      setPartidos(partidos);
+      console.log(partidosData);
+    };
     const getEquipos = async () => {
       const equiposData = await equipocontroller.getEquipoById(id);
-      setEquipo(equiposData);
+      let equipo = equiposData; 
+      setEquipo(equipo);
       setLogo(equiposData.Logo)
     };
     const fetchJugadores = async () => {
       const jugadoresData = await jugadorcontroller.getJugadoresByEquipo(id);
-      setJugadores(jugadoresData);
-      console.log(jugadoresData)
+      let jugadores = jugadoresData;
+      setJugadores(jugadores);
+      
     };
     getEquipos();
-    fetchJugadores();
+    fetchJugadores(); 
+    getPartidos();  
   }, [id]);
 
 
@@ -46,7 +58,7 @@ function Equipo() {
     <img className='banner' src={logo} alt="" />
 
       </header>
-      <h1 className="equipo-nombre">Nombre del Equipo</h1>
+      <h1 className="equipo-nombre">{equipo.Nombre}</h1>
 
 
       <main className="equipo-main">
@@ -56,8 +68,25 @@ function Equipo() {
         </section>
         <div className='partidos'>
           <h1>ULTIMOS PARTIDOS</h1>
-          <PartidoMin />
-          <PartidoMin />
+          {partidos.map((partido) => (
+            <PartidoMin
+              nombre={equipo.Nombre}
+              id={partido.id_equipo}
+              key={partido.Id}
+              local={partido.local}
+              contrincante={partido.contrincante}
+              fecha={partido.fecha}
+              resultadoLoc={partido.resultado_loc}
+              resultadoVis={partido.resultado_vis}
+            />
+            
+          ))}
+          <hr />
+                  <Link to={"/addpartido/"+id} className="btn-agregar">+</Link>
+                  <br />
+                  <br />
+
+          
         </div>
 
 
