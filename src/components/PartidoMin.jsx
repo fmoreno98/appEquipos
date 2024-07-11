@@ -62,8 +62,8 @@ console.log(classe);
         <>
         <div className="partido-min-caja">
             <div className={empate ? gris : (ganaLocal && local) ? verd : vermell}>
-                <h4 className="m-0 p-1">{local ? nombre : contrincante}</h4>
-                <h4 className="m-0 p-1">{local ? resultadoLoc : resultadoVis}</h4>
+                <h4 className="m-0 p-1">{local == "true" ? nombre : contrincante}</h4>
+                <h4 className="m-0 p-1">{local == "true" ? resultadoLoc : resultadoVis}</h4>
 
             </div>
             <div className="versus">
@@ -77,8 +77,8 @@ console.log(classe);
 
             </div>
             <div className={empate ? gris : (ganaLocal && local) ? vermell : verd}>
-                <h4 className="m-0 p-1">{local? resultadoVis : resultadoLoc}</h4>
-                <h4 className="m-0 p-1">{local ? contrincante: nombre}</h4>
+                <h4 className="m-0 p-1">{local == "true" ? resultadoVis : resultadoLoc}</h4>
+                <h4 className="m-0 p-1">{local == "true" ? contrincante: nombre}</h4>
 
             </div>
 

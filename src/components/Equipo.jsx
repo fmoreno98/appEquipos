@@ -67,7 +67,17 @@ function Equipo() {
           <p className="equipo-seccion-descripcion">Descripción del equipo, historia, logros, etc.</p>
         </section>
         <div className='partidos'>
+          <div>
           <h1>ULTIMOS PARTIDOS</h1>
+
+          </div>
+          <div className='locvis'>
+          <h1>LOCAL</h1>
+          <h1></h1>
+
+          <h1>VISITANTE</h1>
+
+          </div>
           {partidos.map((partido) => (
             <PartidoMin
               nombre={equipo.Nombre}

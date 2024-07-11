@@ -45,7 +45,21 @@
 .add-equipo input[type="text"]:focus,
 .add-equipo input[type="file"]:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #ffca8e;
+}
+
+.auto_height { /* CSS */
+width: 100%;
+overflow: hidden;
+padding: 5px 15px;
+margin-bottom: 20px;
+margin-left: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+font-size: 16px;
+font-family: 'Roboto', sans-serif;
+transition: border-color 0.3s ease;
+
 }
 
 .add-equipo button[type="submit"] {

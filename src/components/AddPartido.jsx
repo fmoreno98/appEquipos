@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PartidosController from '../controllers/PartidosController';
 import './AddPartido.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import JugadoresController from '../controllers/JugadoresController';
 
 function AddPartido() {
+    const [jugadores, setJugadores] = useState([]);
     let { id } = useParams();
-    console.log(id);
+    useEffect(() => {
+        const getJugadores = async () => {
+            const jugadoresData = await new JugadoresController().getJugadoresByEquipo(id);
+            let jugadores = jugadoresData;
+            setJugadores(jugadores);
+            console.log("abajo el equipo")
+            console.log(JSON.stringify(jugadores, null, 2));
+        };
+        getJugadores();
+    }, [id]);
 
     const [resultadoLoc, setResultadoLoc] = useState('');
     const [resultadoVis, setResultadoVis] = useState('');
@@ -75,6 +86,48 @@ function AddPartido() {
                         onChange={(e) => setFecha(e.target.value)}
                         required
                     />
+                </div>
+                <div>
+                    <h3>Jugadores</h3>
+
+
+                    <table class="minimalistBlack">
+
+
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>T-1P</th>
+                                <th>T-1P-A</th>
+                                <th>T-2P</th>
+                                <th>T-2P-A</th>
+                                <th>T-3P</th>
+                                <th>T-3-A</th>
+                                <th>Puntos</th>
+                                <th>Faltas</th>
+                                <th>Minutos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {jugadores.map((jugador) => (
+                                
+                                <tr className='estadisticasjugadores'>
+                                    <td>{jugador.Nombre}</td>
+                                    <td><input type="text" /></td>
+                                    <td><input type="text" /></td>
+                                    <td><input type="text" /></td>
+                                    <td><input type="text" /></td>
+                                    <td><input type="text" /></td>
+                                    <td><input type="text" /></td>
+                                    <td><input type="text" /></td>
+                                    <td><input type="text" /></td>
+                                    <td><input type="text" /></td>
+                                </tr>
+                            ))}
+
+                        </tbody>
+                    </table>
                 </div>
                 <button type="submit">Agregar Partido</button>
             </form>
