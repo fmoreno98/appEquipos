@@ -44,7 +44,7 @@ class EquipoController{
             body: JSON.stringify({
                 Nombre: nombre,
                 Categoria: categoria,
-                descripcion: descripcion,
+                Descripcion: descripcion,
                 Logo: logo // Aquí se envía la cadena de texto codificada en base64
             })
         });

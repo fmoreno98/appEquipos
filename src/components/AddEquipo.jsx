@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
 import EquipoController from '../controllers/EquipoController';
 import './AddEquipo.css';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function AddEquipo() {
     const [nombre, setNombre] = useState('');
     const [categoria, setCategoria] = useState('');
     const [descripcion, setDescripcion] = useState('');
-
     const [logo, setLogo] = useState(null);
-    const goTo = useNavigate();
+    const navigate = useNavigate();
 
     const auto_height = (e) => {
         const elem = e.target;
         elem.style.height = '1px';
         elem.style.height = `${elem.scrollHeight}px`;
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const equipoController = new EquipoController();
         await equipoController.createEquipo(nombre, categoria, logo, descripcion);
-        goTo("/")
-        // Aquí puedes agregar lógica adicional después de crear el equipo, como restablecer los campos del formulario o redirigir a otra página
+        navigate("/");
     };
 
     const handleLogoChange = (e) => {
@@ -37,7 +36,6 @@ function AddEquipo() {
             reader.readAsDataURL(file);
         }
     };
-
 
     return (
         <div className="add-equipo">
@@ -64,20 +62,16 @@ function AddEquipo() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="descripcion">Descripcion</label>
+                    <label htmlFor="descripcion">Descripción:</label>
                     <textarea
                         rows="1"
                         className="auto_height"
                         onInput={auto_height}
-                        type="text"
                         id="descripcion"
                         value={descripcion}
                         onChange={(e) => setDescripcion(e.target.value)}
                         required
-                    >
-                    </textarea>
-
-
+                    />
                 </div>
                 <div>
                     <label htmlFor="logo">Logo:</label>
