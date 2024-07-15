@@ -61,6 +61,7 @@ function Equipo() {
               dorsal={jugador.Dorsal}
               posicion={jugador.Posicion}
               count={count}
+              idEquipo={id}
             />
           ))}
         </section>

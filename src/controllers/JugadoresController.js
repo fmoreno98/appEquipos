@@ -8,7 +8,7 @@ class JugadorController{
         this.token = TOKEN;
     }
 
-    async getAllJugadors() {
+    async getAllJugadores() {
         const response = await fetch(`${this.apiUrl}`, {
             method: 'GET',
             headers: {
@@ -20,8 +20,26 @@ class JugadorController{
         const data = await response.json();
         return data.list;
     }
+
     async getJugadoresByEquipo(id_equipo) {
         const response = await fetch(`${this.apiUrl}?where=(id_equipo,eq,${id_equipo})`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'xc-token': this.token
+            }
+        });
+    
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+    
+        const data = await response.json();
+        return data.list; // La lista ya debe estar filtrada por el backend
+    }
+
+    async getJugadorEspecificoByEquipo(id_jugador, id_equipo) {
+        const response = await fetch(`${this.apiUrl}?where=(id_equipo,eq,${id_equipo})~and(Id,eq,${id_jugador})`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
