@@ -39,7 +39,7 @@ function PaginaPrincipal() {
          
             {equipos=[] ? equipos.map((equipo) => (
               <div>
-                <CardEquipo key={equipo.Id} nombre={equipo.Nombre} id={equipo.Id} imatge={equipo.Logo} />
+                <CardEquipo key={equipo.Id} nombre={equipo.Nombre} id={equipo.Id} imatge={equipo.Logo} descripcion={equipo.Descripcion} />
               </div>)) : (
               <h3>No hay equipos</h3>
             )}

@@ -6,36 +6,59 @@ import { Link } from 'react-router-dom';
 import EstadisticaController from '../controllers/EstadisticasController';
 import CardJugador from './CardJugador';
 import JugadorController from '../controllers/JugadoresController';
+import EquipoController from '../controllers/EquipoController';
+import PartidosController from '../controllers/PartidosController';
 
 
 
 function Equipo() {
   let { id } = useParams();
   const jugadorcontroller = new JugadorController();
-  const estadisticacontroller = new EstadisticaController();
-
+  const equipocontroller = new EquipoController();
+  const partidoscontroller = new PartidosController();
+  
+  const [equipo, setEquipo] = useState("");
+  const [logo , setLogo] = useState("");
   const [jugadores, setJugadores] = useState([]);
   const [count, setCount] = useState(0);
+  const [partidos, setPartidos] = useState([]);
 
   useEffect(() => {
+
+    const getPartidos = async () => {
+      const partidosData = await partidoscontroller.getPartidosByEquipos(id);
+      let partidos = partidosData.reverse().slice(0, 3); // Invierte el orden y toma los últimos 3 elementos
+      setPartidos(partidos);
+      console.log(partidosData);
+    };
+    const getEquipos = async () => {
+      const equiposData = await equipocontroller.getEquipoById(id);
+      let equipo = equiposData; 
+      setEquipo(equipo);
+      setLogo(equiposData.Logo)
+    };
     const fetchJugadores = async () => {
       const jugadoresData = await jugadorcontroller.getJugadoresByEquipo(id);
-      setJugadores(jugadoresData);
-      console.log(jugadoresData)
+      let jugadores = jugadoresData;
+      setJugadores(jugadores);
+      
     };
-
-    fetchJugadores();
+    getEquipos();
+    fetchJugadores(); 
+    getPartidos();  
   }, [id]);
+
 
 
 
 
   return (
     <div className="equipo-container">
-      <header className="equipo-header">
+  <header className='equipo-header'>
+    <img className='banner' src={logo} alt="" />
 
       </header>
-      <h1 className="equipo-nombre">Nombre del Equipo</h1>
+      <h1 className="equipo-nombre">{equipo.Nombre}</h1>
 
 
       <main className="equipo-main">
@@ -44,9 +67,36 @@ function Equipo() {
           <p className="equipo-seccion-descripcion">Descripción del equipo, historia, logros, etc.</p>
         </section>
         <div className='partidos'>
+          <div>
           <h1>ULTIMOS PARTIDOS</h1>
-          <PartidoMin />
-          <PartidoMin />
+
+          </div>
+          <div className='locvis'>
+          <h1>LOCAL</h1>
+          <h1></h1>
+
+          <h1>VISITANTE</h1>
+
+          </div>
+          {partidos.map((partido) => (
+            <PartidoMin
+              nombre={equipo.Nombre}
+              id={partido.id_equipo}
+              key={partido.Id}
+              local={partido.local}
+              contrincante={partido.contrincante}
+              fecha={partido.fecha}
+              resultadoLoc={partido.resultado_loc}
+              resultadoVis={partido.resultado_vis}
+            />
+            
+          ))}
+          <hr />
+                  <Link to={"/addpartido/"+id} className="btn-agregar">+</Link>
+                  <br />
+                  <br />
+
+          
         </div>
 
 

@@ -1,10 +1,69 @@
 import "./PartidoMin.css"
-function PartidoMin() {
+
+import EquipoController from "../controllers/EquipoController";
+import PartidosController from "../controllers/PartidosController";
+import { useEffect,useState, } from "react";
+import { useParams } from "react-router-dom";
+
+function PartidoMin(props) {
+    const {nombre, id, local, contrincante, fecha, resultadoLoc, resultadoVis} = props;
+    const ganaLocal = resultadoLoc > resultadoVis;
+    const empate = resultadoLoc === resultadoVis;
+    const verd = "partido-equipo-caja-ganador"
+    const vermell = "partido-equipo-caja-perdedor"
+    const gris  = "partido-equipo-caja-gris"
+
+
+function CalcularGanador(resultadoLoc, resultadoVis) {
+    if(local){
+        if (resultadoLoc > resultadoVis) {
+            return "partido-equipo-caja-ganador"
+        } else if (resultadoLoc < resultadoVis) {
+            return "partido-equipo-caja-perdedor"
+        } else {
+            return "empate"
+        }
+    } else {
+        if (resultadoVis > resultadoLoc) {
+            return "partido-equipo-caja-ganador"
+        } else if (resultadoVis < resultadoLoc) {
+            return "partido-equipo-caja-perdedor"
+        } else {
+            return "empate"
+        }
+    }
+  
+
+}
+console.log(local);
+  const equipocontroller = new EquipoController();
+  const partidoscontroller = new PartidosController();
+//   useEffect(() => {
+
+//     const getEquipoById = async () => {
+//       const equiposData = await equipocontroller.getEquipoById(id);
+//       let equipo = equiposData;
+//       setEquipo(equipo);
+//       console.log("abajo el equipo")
+//       console.log(JSON.stringify(equipo, null, 2));
+//     };
+//     console.log("el ID: "+ id);
+
+// getEquipoById();
+    
+    
+//   }, []);
+
+const classe=CalcularGanador(resultadoLoc, resultadoVis)
+console.log(classe);
+
+  
     return (
+        <>
         <div className="partido-min-caja">
-            <div className="partido-equipo-caja1">
-                <h4 className="m-0 p-1">Girona</h4>
-                <h4 className="m-0 p-1">40</h4>
+            <div className={empate ? gris : (ganaLocal && local) ? verd : vermell}>
+                <h4 className="m-0 p-1">{local == "true" ? nombre : contrincante}</h4>
+                <h4 className="m-0 p-1">{local == "true" ? resultadoLoc : resultadoVis}</h4>
 
             </div>
             <div className="versus">
@@ -17,13 +76,17 @@ function PartidoMin() {
                 </button>
 
             </div>
-            <div className="partido-equipo-caja2">
-                <h4 className="m-0 p-1">55</h4>
-                <h4 className="m-0 p-1">F.C.B</h4>
+            <div className={empate ? gris : (ganaLocal && local) ? vermell : verd}>
+                <h4 className="m-0 p-1">{local == "true" ? resultadoVis : resultadoLoc}</h4>
+                <h4 className="m-0 p-1">{local == "true" ? contrincante: nombre}</h4>
 
             </div>
 
         </div>
+    </>
+
+
+        
     )
 }
 export default PartidoMin;

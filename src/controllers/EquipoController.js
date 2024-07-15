@@ -34,7 +34,7 @@ class EquipoController{
         return data;
     }
 
-    async createEquipo(nombre, categoria, logo) {
+    async createEquipo(nombre, categoria, logo, descripcion) {
         const response = await fetch(`${this.apiUrl}`, {
             method: 'POST',
             headers: {
@@ -44,6 +44,7 @@ class EquipoController{
             body: JSON.stringify({
                 Nombre: nombre,
                 Categoria: categoria,
+                descripcion: descripcion,
                 Logo: logo // Aquí se envía la cadena de texto codificada en base64
             })
         });
@@ -53,23 +54,30 @@ class EquipoController{
     }
     
 
-    async updateEquipo(id, nombre, categoria, logo) {
-        const response = await fetch(`${this.apiUrl}/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'xc-token': this.token
-            },
-            body: JSON.stringify({
-                nombre,
-                categoria,
-                logo
-            })
-        });
-
-        const data = await response.json();
-        return data;
+    async updateEquipo(id, nombre, categoria, logo, descripcion) {
+        try {
+            const response = await fetch(`${this.apiUrl}/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'xc-token': this.token
+                },
+                body: JSON.stringify({
+                    Nombre: nombre,
+                    Categoria: categoria,
+                    Descripcion: descripcion,
+                    Logo: logo 
+                })
+            });
+    
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error updating equipo:', error);
+            throw error;
+        }
     }
+    
 
     async deleteEquipo(id) {
         const response = await fetch(`${this.apiUrl}`, {

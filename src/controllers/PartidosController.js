@@ -20,6 +20,22 @@ class PartidoController{
         const data = await response.json();
         return data.list;
     }
+    async getPartidosByEquipos(id_equipo) {
+        const response = await fetch(`${this.apiUrl}?where=(id_equipo,eq,${id_equipo})`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'xc-token': this.token
+            }
+        });
+    
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+    
+        const data = await response.json();
+        return data.list; // La lista ya debe estar filtrada por el backend
+    }
 
     async getPartidoById(id) {
         const response = await fetch(`${this.apiUrl}/${id}`, {
@@ -34,7 +50,7 @@ class PartidoController{
         return data;
     }
 
-    async createPartido(resultadoLoc, resultadoVis, local, contrincante, fecha) {
+    async createPartido(resultadoLoc, resultadoVis, local, contrincante, fecha, id)  {
         const response = await fetch(`${this.apiUrl}`, {
             method: 'POST',
             headers: {
@@ -42,9 +58,10 @@ class PartidoController{
                 'xc-token': this.token
             },
             body: JSON.stringify({
-                resultadoLoc: resultadoLoc,
-                resultadoVis: resultadoVis,
-                local: local,
+                id_equipo: id,
+                local:local,
+                resultado_loc: resultadoLoc,
+                resultado_vis: resultadoVis,
                 contrincante: contrincante,
                 fecha: fecha
             })
